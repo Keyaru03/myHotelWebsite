@@ -1,2 +1,5 @@
 # myHotelWebsite
- Hotel Website
+
+Hotel Website
+
+Test by John Humbert
