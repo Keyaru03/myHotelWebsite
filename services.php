@@ -1,44 +1,7 @@
-
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Hotel ni Tito | Services</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
-	</head>
-	<body>
-		<!---start-Wrap--->
-			<!---start-header--->
-			<div class="header">
-				<div class="wrap">
-					<div class="header-top">
-						<div class="logo">
-					
-						</div>
-                        <img src="images/coollogo.jpg.png" align="center" width=700px height=150 px>
-						<div class="contact-info">
-							<a href = "contact.php" target = "_self"> 
-								<img src = "images/contact us.png" alt = "contact-us" width=150px height=130px border = "0"/> 
-							<p class="phone">Call us : <a href="#">0969xxxxxxx</a></p>
-							<p class="gps">Gps : <a href="#top123">View map</a></p>
-							<p class="code">BROUGHT TO YOU BY:<a href="https:zeeshanovic.blogspot.com">Kups</a></p>
-						</div>
-						<div class="clear"> </div>
-					</div>
-				</div>
-				<div class="header-top-nav">
-					<div class="wrap">
-						<ul>
-							<li><a href="index.php">Home</a></li>
-							<li><a href="about.php">About</a></li>
-							<li class="active"><a href="services.php">Services</a></li>
-							<li><a href="gallery.php">Gallery</a></li>
-							<div class="clear"> </div>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!---End-header--->
+<?php
+include('design/header.php'); 
+include('design/navigation.php');
+?>
 			<div class="clear"> </div>
 			<!---start-content----->
 			<div class="content">
@@ -105,7 +68,7 @@
 				</div>
 				<div class="box center-box">
 					<ul>
-					<li><a href="#" onclick="myFunction()">Leave a Feedback</a></li>
+									<li><a href="#" onclick="myFunction()">Leave a Feedback</a></li>
 						<li><a href="#" onclick="myFunction1()">Reviews and Ratings</a></li>
 						<li><a href="gallery.php">gallery</a></li>
 						<li><a href="services.php">Services</a></li>
@@ -122,15 +85,6 @@
 			</div>
 			<!---start-box---->
 		</div>
-		<!---start-copy-Right----->
-		<div class="copy-tight">
-			<p>&copy HOTEL NI TITO,DEMO LAND 2024</p>
-		</div>
-		<!---End-copy-Right----->
-			</div>
-			<!---End-content----->
-		</div>
-		<!---End-Wrap--->
-	</body>
-</html>
-
+		<?php
+include('design/footer.php');
+?>
