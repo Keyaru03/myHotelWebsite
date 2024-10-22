@@ -1,8 +1,11 @@
 <?php
 include('design/header.php');
 include('design/navigation.php');
+include('db.php');
+
+
 ?>
-<!---End-header--->
+
 <div class="clear"> </div>
 <!--start-image-slider---->
 <div class="image-slider">
@@ -70,34 +73,44 @@ include('design/navigation.php');
                 <div class="content-box-left-topgrid">
                     <h3>welcome to our Hotel</h3>
                     <p>
-                    <ul> Feel Like Home :) </ul>
+                    <ul>
+                        <b> Feel Like Home :) </b>
+                    </ul>
                     </p>
-                    <p> Whether you are staying with us, visiting our overlooking mountains & nature park attractions
+                    <?php
+                    echo '<ul><li><span style="color: white; font-size: 15px;"> Whether you are staying with us, visiting our overlooking mountains & nature park attractions
                         for the day or dining in one of our award-winning restaurants,hotel ni tito promises to deliver
                         extraordinary experiences. We are very excited to bring to you a wide range of new and exciting
-                        entertainment options that you must try during your visit..</p>
+                        entertainment options that you must try during your visit..</span></li></ul>';
+                    ?>
                     <span>For more information about our Hotel, Call 0969xxxxxxx</span>
                 </div>
                 <div class="content-box-left-bootomgrids">
                     <div class="content-box-left-bootomgrid">
                         <h3>
-                            <ul>Deluxe Rooms</ul>
+                            <?php
+                            echo '<ul><li><span style="color: white;">Deluxe Rooms</span></li></ul>';
+                            ?>
                         </h3>
-                        <p>Guest room, 1 King or 2 Twin/Single Bed(s)</p>
+                        <b>Guest room, 1 King or 2 Twin/Single Bed(s)</b>
                         <a href="#"><img src="images/slider1.jpg" title="image-name" /></a>
                     </div>
                     <div class="content-box-left-bootomgrid">
                         <h3>
-                            <ul>Luxury Rooms</ul>
+                            <?php
+                            echo '<ul><li><span style="color: white;">Luxury Rooms</span></li></ul>';
+                            ?>
                         </h3>
-                        <p>Guest room, 1 King or 2 Twin/Single Bed(s), Pool access, Balcony</p>
+                        <b>Guest room, 1 King or 2 Twin/Single Bed(s), Pool access, Balcony</b>
                         <a href="#"><img src="images/slider2.jpg" title="image-name" /></a>
                     </div>
                     <div class="content-box-left-bootomgrid lastgrid">
                         <h3>
-                            <ul>Executive Rooms</ul>
+                            <?php
+                            echo '<ul><li><span style="color: white;">Executive Rooms</span></li></ul>';
+                            ?>
                         </h3>
-                        <p>Club lounge access, Guest room, 1 King or 2 Double</p>
+                        <b>Club lounge access, Guest room, 1 King or 2 Double</b>
                         <a href="#"><img src="images/slider3.jpg" title="image-name" /></a>
                     </div>
                     <div class="clear"> </div>
@@ -109,12 +122,12 @@ include('design/navigation.php');
                     <h3>To days Specials</h3>
                     <a href="#"><img src="images/slider1.jpg" title="imnage-name" /></a>
                     <h4>Super Discount Offer</h4>
-                    <p>"For those seeking additional luxury and comfort<br>
+                    <b>"For those seeking additional luxury and comfort<br>
                         <u>Size:</u> 45 - 47 square metres<br>
                         <u>Views:</u> The Palm or Aquaventure<br>
                         <u>Occupancy:</u> 2 adults + 2 children<br>
                         <u>Bed type:</u> a king size bed or queen size beds"
-                    </p>
+                    </b>
                     <a href="gallery.html">Read More</a>
                 </div>
                 <div class="content-box-right-bottomgrid">
@@ -151,5 +164,5 @@ include('design/navigation.php');
 
 
         <?php
-		include('design/footer.php');
-		?>
+        include('design/footer.php');
+        ?>
