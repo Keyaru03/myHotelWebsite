@@ -79,7 +79,7 @@ echo "<script>
                     <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
                 </div>
                 <div class="gallery-grid grid2">
-                    <img src="images/slider3.jpg" height=125px width=450px alt="">
+                    <img src="images/executiveclubsuite-hero-2x1.jpg" height=125px width=450px alt="">
                     <h4>Executive Club Suite</h4>
                     <p>The Executive Club Suite is the perfect balance of comfort and luxury.</p>
                     <div class="countdown" id="Executive"></div>
