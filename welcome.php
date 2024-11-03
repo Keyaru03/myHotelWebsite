@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,3 +85,8 @@ if (!isset($_SESSION['username'])) {
 </body>
 
 </html>
+
+<?php
+include('index.php');
+
+?>
