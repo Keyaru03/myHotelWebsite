@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-include('index.php');
+if (!isset($_SESSION['username'])) {
 
-
+    header("Location: login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +49,6 @@ include('index.php');
             font-size: 16px;
             color: #fff;
             background-color: #f44336;
-            /* Red color */
             text-decoration: none;
             border-radius: 5px;
             border: none;
@@ -57,7 +58,6 @@ include('index.php');
 
         .logout-btn:hover {
             background-color: #d32f2f;
-            /* Darker red on hover */
         }
     </style>
 
@@ -71,14 +71,16 @@ include('index.php');
                     <!-- Placed image inside the header -->
                     <img src="images/welcome.png" width="500" height="120" alt="Welcome Image">
                     <!-- Username and success message -->
-                    <h2>wwws<?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+                    <h2><?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
                     <p>You have successfully logged in.</p>
                     <!-- Styled Logout Button -->
-                    <a href="logout.php" class="logout-btn">Logout</a>
+
                 </div>
             </div>
         </div>
     </div>
+</body>
+
 </body>
 
 </html>

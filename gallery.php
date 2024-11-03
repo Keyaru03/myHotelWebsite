@@ -1,12 +1,12 @@
 <?php
-include('design/header.php'); 
+include('design/header.php');
 include('design/navigation.php');
 
-	// Set the timezone to the Philippines (Asia/Manila)
-    date_default_timezone_set('Asia/Manila');
+// Set the timezone to the Philippines (Asia/Manila)
+date_default_timezone_set('Asia/Manila');
 
-    // Set the target date for the countdown
-   // Target dates
+// Set the target date for the countdown
+// Target dates
 $deluxPrimeExpirationKingSize = "2024-10-13 23:30:00";  // Your target date and time
 $deluxPrimeExpirationQueenSize = "2024-10-13 23:31:00";  // Your target date and time
 $deluxPrimeExpirationImperial = "2024-10-13 23:32:00";  // Your target date and time
@@ -97,9 +97,9 @@ echo "<script>
             <script type="text/javascript" src="js/jquery.lightbox.js"></script>
             <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen">
             <script type="text/javascript">
-            $(function() {
-                $('.gallery-grid a').lightBox();
-            });
+                $(function() {
+                    $('.gallery-grid a').lightBox();
+                });
             </script>
             <div class="clear"> </div>
             <div class="projects-bottom-paination">
@@ -139,146 +139,154 @@ echo "<script>
 
 
     <script>
-    function myFunction() {
-        var person = prompt("Please enter your mobile number", "9xxxxxxxxx");
-        var r = confirm("The price is ₱5500\n Press ok to continue");
-        if (person != null && r == true) {
-            alert("Dear customer, Thank You for booking the room!!!");
+        function myFunction() {
+            var mobileNumber = prompt("Please enter your mobile number", "9xxxxxxxxx");
+            var name = prompt("Please enter your Name", "");
+            var bookingDate = prompt("Please enter the day you want to use the room (e.g., YYYY-MM-DD)", "");
+
+            // Check if all inputs are filled
+            if (mobileNumber && name && bookingDate) {
+                var r = confirm("The price is ₱5500\nPress OK to continue with the booking.");
+
+                if (r) {
+                    alert("Dear " + name + ", Thank you for booking the room for " + bookingDate + "!");
+                } else {
+                    alert("You cancelled your booking.");
+                }
+            } else {
+                alert("Please fill in all fields before proceeding.");
+            }
         }
-        if (person != null && r == false) {
-            alert("You cancel your booking ");
+
+
+
+
+        // Timer Script Here
+
+        // Function to update the countdown
+        function updateCountdownKing() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationKingSize - now;
+
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("KingSize").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (timeLeft < 0) {
+                clearInterval(kingSizeInterval);
+                document.getElementById("KingSize").innerHTML = "Available";
+            }
         }
-    }
 
+        // Function to update the countdown for Queen Size room
+        function updateCountdownQueen() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationQueenSize - now;
 
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
+            document.getElementById("queenSize").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-    // Timer Script Here
-
-    // Function to update the countdown
-    function updateCountdownKing() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationKingSize - now;
-
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        document.getElementById("KingSize").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-        if (timeLeft < 0) {
-            clearInterval(kingSizeInterval);
-            document.getElementById("KingSize").innerHTML = "Available";
+            if (timeLeft < 0) {
+                clearInterval(queenSizeInterval);
+                document.getElementById("queenSize").innerHTML = "Available";
+            }
         }
-    }
 
-    // Function to update the countdown for Queen Size room
-    function updateCountdownQueen() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationQueenSize - now;
+        // Function to update the countdown for Imperial room
+        function updateCountdownImperial() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationImperial - now;
 
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("queenSize").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            document.getElementById("Imperial").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        if (timeLeft < 0) {
-            clearInterval(queenSizeInterval);
-            document.getElementById("queenSize").innerHTML = "Available";
+            if (timeLeft < 0) {
+                clearInterval(imperialInterval);
+                document.getElementById("Imperial").innerHTML = "Available";
+            }
         }
-    }
 
-    // Function to update the countdown for Imperial room
-    function updateCountdownImperial() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationImperial - now;
+        function updateCountdownTerrace() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationTerrace - now;
 
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("Imperial").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            document.getElementById("Terrace").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        if (timeLeft < 0) {
-            clearInterval(imperialInterval);
-            document.getElementById("Imperial").innerHTML = "Available";
+            if (timeLeft < 0) {
+                clearInterval(terraceInterval);
+                document.getElementById("Terrace").innerHTML = "Available";
+            }
         }
-    }
 
-    function updateCountdownTerrace() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationTerrace - now;
+        function updateCountdownExecutive() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationExecutive - now;
 
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("Terrace").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            document.getElementById("Executive").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        if (timeLeft < 0) {
-            clearInterval(terraceInterval);
-            document.getElementById("Terrace").innerHTML = "Available";
+            if (timeLeft < 0) {
+                clearInterval(executiveInterval);
+                document.getElementById("Executive").innerHTML = "Available";
+            }
         }
-    }
 
-    function updateCountdownExecutive() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationExecutive - now;
+        function updateCountdownRegal() {
+            var now = new Date().getTime();
+            var timeLeft = deluxPrimeExpirationRegal - now;
 
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById("Executive").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            document.getElementById("Regal").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-        if (timeLeft < 0) {
-            clearInterval(executiveInterval);
-            document.getElementById("Executive").innerHTML = "Available";
+            if (timeLeft < 0) {
+                clearInterval(regalInterval);
+                document.getElementById("Regal").innerHTML = "Available";
+            }
         }
-    }
 
-    function updateCountdownRegal() {
-        var now = new Date().getTime();
-        var timeLeft = deluxPrimeExpirationRegal - now;
+        function myFunction1() {
+            var person = prompt("Please give your review", "......");
+            if (person != null) {
+                alert("Thank you for reviewing us!!!");
 
-        var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        document.getElementById("Regal").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-        if (timeLeft < 0) {
-            clearInterval(regalInterval);
-            document.getElementById("Regal").innerHTML = "Available";
+            }
         }
-    }
 
-    function myFunction1() {
-        var person = prompt("Please give your review", "......");
-        if (person != null) {
-            alert("Thank you for reviewing us!!!");
-
-        }
-    }
-
-    // Start countdowns every second
-    var kingSizeInterval = setInterval(updateCountdownKing, 1000);
-    var queenSizeInterval = setInterval(updateCountdownQueen, 1000);
-    var imperialInterval = setInterval(updateCountdownImperial, 1000);
-    var terraceInterval = setInterval(updateCountdownTerrace, 1000);
-    var executiveInterval = setInterval(updateCountdownExecutive, 1000);
-    var regalInterval = setInterval(updateCountdownRegal, 1000);
-    // End timer script 
+        // Start countdowns every second
+        var kingSizeInterval = setInterval(updateCountdownKing, 1000);
+        var queenSizeInterval = setInterval(updateCountdownQueen, 1000);
+        var imperialInterval = setInterval(updateCountdownImperial, 1000);
+        var terraceInterval = setInterval(updateCountdownTerrace, 1000);
+        var executiveInterval = setInterval(updateCountdownExecutive, 1000);
+        var regalInterval = setInterval(updateCountdownRegal, 1000);
+        // End timer script 
     </script>
 
 
     <?php
-include('design/footer.php');
-?>
+    include('design/footer.php');
+    ?>

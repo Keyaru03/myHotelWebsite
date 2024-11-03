@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: login.php"); // Redirect to login after logout
+header("Location: index.php"); // Redirect to login after logout
 exit();

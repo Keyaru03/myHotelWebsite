@@ -71,7 +71,7 @@ include('db.php');
         <div class="wrap">
             <div class="content-box-left">
                 <div class="content-box-left-topgrid">
-                    <h3>welcome to our Hotel</h3>
+                    <h3>Welcome to our Hotel</h3>
                     <p>
                     <ul>
                         <b> Feel Like Home :) </b>

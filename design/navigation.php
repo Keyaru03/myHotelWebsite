@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 $current_page = basename($_SERVER['PHP_SELF']);
 
@@ -18,8 +18,21 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
                             <div class="auth-buttons">
 
-                                <a href="login.php" class="btn login-btn">Login</a>
-                                <a href="signup.php" class="btn signup-btn">Sign Up</a>
+
+
+                                <?php if (!isset($_SESSION['username'])): ?>
+
+                                    <a href="login.php" class="btn login-btn">Login</a>
+                                    <a href="signup.php" class="btn signup-btn">Sign Up</a>
+                                <?php else: ?>
+                                    <!-- Show welcome message and logout link if the user is logged in -->
+
+                                    <a href="logout.php" class="logout-btn">Logout</a>
+                                <?php endif; ?>
+
+
+
+
                                 <style>
                                     .auth-buttons {
                                         display: flex;

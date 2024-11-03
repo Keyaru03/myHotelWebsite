@@ -1,29 +1,33 @@
 <?php
-include('db.php');
-$loginErr = '';
+session_start(); // Start the session at the beginning of the file
 
-
+include('db.php'); // Ensure this file contains your database connection
+$loginErr = ''; // Initialize error message variable
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    // Check if username exists
+    // Prepare SQL statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
+    // Check if the username exists
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $username, $hashed_password);
         $stmt->fetch();
 
         // Verify password
         if (password_verify($password, $hashed_password)) {
-            // Create session for the user
+            // Create session variables for the user
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
-            header("Location: welcome.php"); // Redirect to a protected page
+
+            // Redirect to welcome page
+            header("Location: welcome.php");
+            exit;
         } else {
             $loginErr = 'Invalid password.';
         }
@@ -46,7 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         /* Basic styles for form and button */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-image: url(../images/box-bg.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -55,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         .login-container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -111,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-container">
         <h2>Login</h2>
 
+        <!-- Display error message if there is one -->
         <?php if (!empty($loginErr)): ?>
             <p class="error"><?php echo $loginErr; ?></p>
         <?php endif; ?>
