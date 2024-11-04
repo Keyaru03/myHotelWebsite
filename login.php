@@ -1,33 +1,30 @@
 <?php
-session_start(); // Start the session at the beginning of the file
 
-include('db.php'); // Ensure this file contains your database connection
-$loginErr = ''; // Initialize error message variable
+include('db.php');
+$loginErr = '';
+
+$_SESSION['username'] = $username;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    // Prepare SQL statement to prevent SQL injection
+    // Check if username exists
     $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
-    // Check if the username exists
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $username, $hashed_password);
         $stmt->fetch();
 
         // Verify password
         if (password_verify($password, $hashed_password)) {
-            // Create session variables for the user
+            // Create session for the user
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
-
-            // Redirect to welcome page
-            header("Location: welcome.php");
-            exit;
+            header("Location: welcome.php"); // Redirect to a protected page
         } else {
             $loginErr = 'Invalid password.';
         }
@@ -51,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         body {
             font-family: Arial, sans-serif;
             background-image: url(../images/box-bg.png);
+            /* Add your image file path here */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -59,16 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: #333;
         }
 
-        /* Semi-transparent container for the login form */
         .login-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            /* Increased opacity for better contrast */
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Slight transparency for readability */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
         }
@@ -76,13 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            color: #333;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
         }
 
         input[type="text"],
@@ -119,11 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+
 <body>
     <div class="login-container">
         <h2>Login</h2>
 
-        <!-- Display error message if there is one -->
         <?php if (!empty($loginErr)): ?>
             <p class="error"><?php echo $loginErr; ?></p>
         <?php endif; ?>
