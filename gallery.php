@@ -46,31 +46,52 @@ echo "<script>
         <div class="gallerys">
             <h3>gallery</h3>
             <div class="gallery-grids">
+                <script>
+                    function myFunction(price) {
+                        var mobileNumber = prompt("Please enter your mobile number", "9xxxxxxxxx");
+                        var name = prompt("Please enter your Name", "");
+                        var bookingDate = prompt("Please enter the day you want to use the room (e.g., YYYY-MM-DD)", "");
+
+                        // Check if all inputs are filled
+                        if (mobileNumber && name && bookingDate) {
+                            var r = confirm("The price is ₱" + price + "\nPress OK to continue with the booking.");
+
+                            if (r) {
+                                alert("Dear " + name + ", Thank you for booking the room for " + bookingDate + "!");
+                            } else {
+                                alert("You cancelled your booking.");
+                            }
+                        } else {
+                            alert("Please fill in all fields before proceeding.");
+                        }
+                    }
+                </script>
+
                 <div class="gallery-grid">
                     <img src="images/slider1.jpg" alt="">
                     <h4>Deluxe Prime</h4>
                     <p>With king size bed</p>
-                    <p><strong>Price:</strong> $200 per night</p>
+                    <p><strong>Price:</strong> ₱2000 per night</p>
                     <div class="countdown" id="KingSize"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(2000)">Book Now</a></div>
                 </div>
 
                 <div class="gallery-grid grid2">
                     <img src="images/slider3.jpg" alt="">
                     <h4>Deluxe Supreme</h4>
                     <p>Two queen size beds</p>
-                    <p><strong>Price:</strong> $250 per night</p>
+                    <p><strong>Price:</strong> ₱2500 per night</p>
                     <div class="countdown" id="queenSize"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(2500)">Book Now</a></div>
                 </div>
 
                 <div class="gallery-grid">
                     <img src="images/Imperial club room.jpg" height="155px" width="450px" alt="">
                     <h4>Imperial Club Room</h4>
                     <p>For those seeking additional luxury and comfort</p>
-                    <p><strong>Price:</strong> $300 per night</p>
+                    <p><strong>Price:</strong> ₱3000 per night</p>
                     <div class="countdown" id="Imperial"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(3000)">Book Now</a></div>
                 </div>
 
                 <div class="gallery-grid">
@@ -78,18 +99,18 @@ echo "<script>
                     <h4>Terrace Club Suite</h4>
                     <p>The Terrace Club Suite has beautiful and spacious terraces, perfect for sunbathing or al fresco
                         dining.</p>
-                    <p><strong>Price:</strong> $350 per night</p>
+                    <p><strong>Price:</strong> ₱3500 per night</p>
                     <div class="countdown" id="Terrace"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(3500)">Book Now</a></div>
                 </div>
 
                 <div class="gallery-grid grid2">
                     <img src="images/executiveclubsuite-hero-2x1.jpg" height="125px" width="450px" alt="">
                     <h4>Executive Club Suite</h4>
                     <p>The Executive Club Suite is the perfect balance of comfort and luxury.</p>
-                    <p><strong>Price:</strong> $400 per night</p>
+                    <p><strong>Price:</strong> ₱4000 per night</p>
                     <div class="countdown" id="Executive"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(4000)">Book Now</a></div>
                 </div>
 
                 <div class="gallery-grid">
@@ -97,9 +118,9 @@ echo "<script>
                     <h4>Regal Club Suite</h4>
                     <p>The Regal Club Suite offers a lavish sanctuary with plenty of room to relax, rejuvenate, and
                         entertain.</p>
-                    <p><strong>Price:</strong> $450 per night</p>
+                    <p><strong>Price:</strong> ₱4500 per night</p>
                     <div class="countdown" id="Regal"></div>
-                    <div class="gallery-button"><a href="#" onclick="myFunction()">Book Now</a></div>
+                    <div class="gallery-button"><a href="#" onclick="myFunction(4500)">Book Now</a></div>
                 </div>
 
                 <script type="text/javascript" src="js/jquery.lightbox.js"></script>
@@ -148,28 +169,6 @@ echo "<script>
 
 
         <script>
-            function myFunction() {
-                var mobileNumber = prompt("Please enter your mobile number", "9xxxxxxxxx");
-                var name = prompt("Please enter your Name", "");
-                var bookingDate = prompt("Please enter the day you want to use the room (e.g., YYYY-MM-DD)", "");
-
-                // Check if all inputs are filled
-                if (mobileNumber && name && bookingDate) {
-                    var r = confirm("The price is ₱5500\nPress OK to continue with the booking.");
-
-                    if (r) {
-                        alert("Dear " + name + ", Thank you for booking the room for " + bookingDate + "!");
-                    } else {
-                        alert("You cancelled your booking.");
-                    }
-                } else {
-                    alert("Please fill in all fields before proceeding.");
-                }
-            }
-
-
-
-
             // Timer Script Here
 
             // Function to update the countdown
