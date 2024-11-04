@@ -1,9 +1,8 @@
 <?php
+session_start(); // Start the session at the beginning
 
 include('db.php');
 $loginErr = '';
-
-$_SESSION['username'] = $username;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
@@ -25,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
             header("Location: welcome.php"); // Redirect to a protected page
+            exit; // Stop further execution after redirection
         } else {
             $loginErr = 'Invalid password.';
         }
@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         body {
             font-family: Arial, sans-serif;
             background-image: url(../images/box-bg.png);
-            /* Add your image file path here */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -61,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.8);
-            /* Slight transparency for readability */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -114,7 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
 
 <body>
     <div class="login-container">

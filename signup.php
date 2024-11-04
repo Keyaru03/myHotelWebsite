@@ -1,12 +1,12 @@
 <?php
 session_start();
 include('db.php');
-include('db.php');
 
 if (!isset($_SESSION['payment_complete'])) {
     header("Location: payment.php"); // Redirect to payment page if not completed
     exit;
 }
+
 $signupErr = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,20 +23,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($password !== $confirm_password) {
         $signupErr = 'Passwords do not match.';
     } else {
-        // Password hashing for security
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // Check if email or username already exists
+        $check_stmt = $conn->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
+        $check_stmt->bind_param("ss", $email, $username);
+        $check_stmt->execute();
+        $result = $check_stmt->get_result();
 
-        // Insert user into the database
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-        if ($stmt->execute()) {
-            header("Location: login.php"); // Redirect to login page after successful sign-up
-        } else {
+        if ($result->num_rows > 0) {
             $signupErr = 'Username or email already taken.';
+        } else {
+            // Password hashing for security
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert user into the database
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $email, $hashed_password);
+
+            if ($stmt->execute()) {
+                header("Location: login.php"); // Redirect to login page after successful sign-up
+                exit;
+            } else {
+                $signupErr = 'An error occurred during registration.';
+            }
+
+            $stmt->close();
         }
 
-        $stmt->close();
+        $check_stmt->close();
     }
 }
 ?>
@@ -53,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         body {
             font-family: Arial, sans-serif;
             background-image: url('../images/signup-bg.jpg');
-            /* Ensure this path points to your background image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
