@@ -2,8 +2,9 @@
 session_start();
 include('db.php');
 
-if (!isset($_SESSION['payment_complete'])) {
-    header("Location: payment.php"); // Redirect to payment page if not completed
+// Check if payment is complete before showing the signup form
+if (!isset($_SESSION['payment_complete']) || $_SESSION['payment_complete'] !== true) {
+    header("Location: payment.php"); // Redirect to payment page if payment is not complete
     exit;
 }
 
@@ -40,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bind_param("sss", $username, $email, $hashed_password);
 
             if ($stmt->execute()) {
+                // Clear the session payment flag after successful registration
+                unset($_SESSION['payment_complete']);
                 header("Location: login.php"); // Redirect to login page after successful sign-up
                 exit;
             } else {
